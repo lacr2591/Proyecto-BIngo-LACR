@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Capa_Aplicacion</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Servicios\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Capa Persistencia\CapaPersistencia.csproj" />
+    <ProjectReference Include="..\CapaDominio\CapaDominio.csproj" />
+  </ItemGroup>
+
+</Project>

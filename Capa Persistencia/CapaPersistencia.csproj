@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Capa_Persistencia</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="FabricaDAO\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CapaDominio\CapaDominio.csproj" />
+  </ItemGroup>
+
+</Project>
