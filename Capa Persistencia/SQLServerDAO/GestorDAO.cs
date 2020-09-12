@@ -6,7 +6,7 @@ using CapaDominio.Contratos;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace Capa_Persistencia.SQLServerDAO
+namespace CapaPersistencia.SQLServerDAO
 {
     public class GestorDAO:IGestorDAO
     {
@@ -18,7 +18,7 @@ namespace Capa_Persistencia.SQLServerDAO
             try
             {
                 conexion = new SqlConnection();
-                conexion.ConnectionString = "Data Source=(local);Inicial Catalog=ProyectoWebDelivery;Integrated Security=true";
+                conexion.ConnectionString = "Data Source=DESKTOP-TV575S0;Initial Catalog=Bingo;Integrated Security=true";
                 conexion.Open();
             }
 

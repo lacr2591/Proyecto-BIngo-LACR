@@ -14,6 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Capa Aplicacion\CapaAplicacion.csproj" />
+    <ProjectReference Include="..\Capa Persistencia\CapaPersistencia.csproj" />
     <ProjectReference Include="..\CapaDominio\CapaDominio.csproj" />
   </ItemGroup>
 
