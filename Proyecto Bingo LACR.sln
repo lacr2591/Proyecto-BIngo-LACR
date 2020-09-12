@@ -3,15 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29318.209
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaAplicacion", "Capa Aplicacion\CapaAplicacion.csproj", "{EDFD751B-B2C5-4BBA-A102-B6196FEFB72C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruebasUnitarias", "PruebasUnitarias\PruebasUnitarias.csproj", "{ABE79FED-DE00-4A92-84B5-AEC78B2D4025}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaPersistencia", "Capa Persistencia\CapaPersistencia.csproj", "{AF9F38BB-4259-4565-9C1E-E1811F83FAE6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDominio", "CapaDominio\CapaDominio.csproj", "{2A590453-7AE9-4227-9042-87190BF28BB4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PruebasUnitarias", "PruebasUnitarias\PruebasUnitarias.csproj", "{ABE79FED-DE00-4A92-84B5-AEC78B2D4025}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaPresentacion", "CapaPresentacion\CapaPresentacion.csproj", "{AC5444FC-E880-40AC-B6EA-286EFB0CCD5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapaPresentacion", "CapaPresentacion\CapaPresentacion.csproj", "{AC5444FC-E880-40AC-B6EA-286EFB0CCD5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,18 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EDFD751B-B2C5-4BBA-A102-B6196FEFB72C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EDFD751B-B2C5-4BBA-A102-B6196FEFB72C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EDFD751B-B2C5-4BBA-A102-B6196FEFB72C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EDFD751B-B2C5-4BBA-A102-B6196FEFB72C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF9F38BB-4259-4565-9C1E-E1811F83FAE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF9F38BB-4259-4565-9C1E-E1811F83FAE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF9F38BB-4259-4565-9C1E-E1811F83FAE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF9F38BB-4259-4565-9C1E-E1811F83FAE6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A590453-7AE9-4227-9042-87190BF28BB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A590453-7AE9-4227-9042-87190BF28BB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A590453-7AE9-4227-9042-87190BF28BB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A590453-7AE9-4227-9042-87190BF28BB4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ABE79FED-DE00-4A92-84B5-AEC78B2D4025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ABE79FED-DE00-4A92-84B5-AEC78B2D4025}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABE79FED-DE00-4A92-84B5-AEC78B2D4025}.Release|Any CPU.ActiveCfg = Release|Any CPU

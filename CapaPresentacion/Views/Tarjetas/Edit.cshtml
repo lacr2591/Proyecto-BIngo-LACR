@@ -1,0 +1,49 @@
+﻿@model CapaPresentacion.Models.Tarjetas
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Tarjetas</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdTarjeta" />
+            <div class="form-group">
+                <label asp-for="IdCombinacion" class="control-label"></label>
+                <select asp-for="IdCombinacion" class="form-control" asp-items="ViewBag.IdCombinacion"></select>
+                <span asp-validation-for="IdCombinacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdJuego" class="control-label"></label>
+                <select asp-for="IdJuego" class="form-control" asp-items="ViewBag.IdJuego"></select>
+                <span asp-validation-for="IdJuego" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdJugador" class="control-label"></label>
+                <select asp-for="IdJugador" class="form-control" asp-items="ViewBag.IdJugador"></select>
+                <span asp-validation-for="IdJugador" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Ganador" /> @Html.DisplayNameFor(model => model.Ganador)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

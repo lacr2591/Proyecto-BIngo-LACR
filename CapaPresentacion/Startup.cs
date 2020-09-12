@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using CapaPresentacion.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CapaPresentacion
 {
@@ -24,6 +26,10 @@ namespace CapaPresentacion
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            
+            var conexion = Configuration.GetConnectionString("conexionDBBingo");
+            services.AddDbContext<BingoContext>(options => options.UseSqlServer(conexion));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
