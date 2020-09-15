@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Index";
+    Combinaciones combinaciones = new Combinaciones();
+    String tarjeta = combinaciones.GenerarCombinaciones();
 }
 
 <h1>Index</h1>
@@ -18,18 +20,24 @@
             <th></th>
         </tr>
     </thead>
+
+
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Numeros)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdCombinacion">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdCombinacion">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdCombinacion">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numeros)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdCombinacion">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdCombinacion">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdCombinacion">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<a href="#" onclick="generarTarjeta()"> GENERAR TARJETA </a>
+<div class="container" id="tarjeta"></div>
+
