@@ -1,13 +1,12 @@
-﻿function crearFila(identidad,padreContenedor) {
-    var newFila = document.createElement("div");
+﻿function crearFila(identidad, padreContenedor) {
+    let newFila = document.createElement("div");
     newFila.id = identidad;
     newFila.className = 'row';
     document.getElementById(padreContenedor).appendChild(newFila);
 }
 
-
 function crearColumna(identidad, filaPadre, clase) {
-    var newColumna = document.createElement("div");
+    let newColumna = document.createElement("div");
 
     newColumna.id = identidad;
     newColumna.className = clase;
@@ -16,28 +15,29 @@ function crearColumna(identidad, filaPadre, clase) {
 }
 
 function llenarTarjetas(texto, padre) {
-    var llenar = document.createTextNode(texto);
+    let llenar = document.createTextNode(texto);
 
-    document.getElementById(padre).appendChild(llenar);  
+    document.getElementById(padre).appendChild(llenar);
 }
+
 function llenarCombinaciones(combinaciones, idTarjeta) {
     const arregloNumeros = combinaciones.split(' ');
 
     let ubicacion = 0;
 
-    for (var i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) {
         crearFila(i.toString(), 'tarjeta');
-        for (var j = 0; j < 5; j++) {
+        for (let j = 0; j < 5; j++) {
             let ident = i.toString() + j.toString();
 
-            if (i==2 && j==2) {
-                crearColumna(ident, i.toString(), 'col-sm cantado');
+            if (i == 2 && j == 2) {
+                crearColumna(idTarjeta, i.toString(), 'col-sm cantado');
 
-                llenarTarjetas(idTarjeta, i.toString() + j.toString());
+                llenarTarjetas(idTarjeta, idTarjeta);
             }
             else {
                 crearColumna(ident, i.toString(), 'col-sm cantado');
-                var elemento = document.getElementById(ident);
+                let elemento = document.getElementById(ident);
                 elemento.onclick = function () {
                     marcar(ident);
                 }
@@ -50,42 +50,49 @@ function llenarCombinaciones(combinaciones, idTarjeta) {
     }
 }
 
-function generarTarjeta() {
+function generarTarjeta(combinaciones) {
+    //Falta cambiar el ID001 por una variable
+    console.log("HOLA MUNDO");
+    if (document.getElementById("id001") == null) {
 
-    var importarEstilo = document.createElement('link');
-    importarEstilo.rel = "stylesheet";
-    importarEstilo.href = "/css/tarjetas.css";
 
-    document.getElementsByTagName("head")[0].appendChild(importarEstilo);
 
-    if (document.createStyleSheet) {
-        document.createStyleSheet('~/css/site.css');
+        let importarEstilo = document.createElement('link');
+        importarEstilo.rel = "stylesheet";
+        importarEstilo.href = "/css/tarjetas.css";
+
+        document.getElementsByTagName("head")[0].appendChild(importarEstilo);
+
+        if (document.createStyleSheet) {
+            document.createStyleSheet('~/css/site.css');
+        }
+        else {
+            let styles = "@import url('~/css/site.css');";
+            let newSS = document.createElement('link');
+            newSS.rel = 'stylesheet';
+            newSS.href = 'data:text/css,' + escape(styles);
+            document.getElementsByTagName("head")[0].appendChild(newSS);
+        }
+
+
+
+        crearFila('encabezadoTarjeta', 'tarjeta');
+        let clase = "col-sm";
+
+        crearColumna('columnaB', 'encabezadoTarjeta', clase.toString());
+        llenarTarjetas('B', 'columnaB');
+        crearColumna('columnaI', 'encabezadoTarjeta', clase.toString());
+        llenarTarjetas('I', 'columnaI');
+        crearColumna('columnaN', 'encabezadoTarjeta', clase.toString());
+        llenarTarjetas('N', 'columnaN');
+        crearColumna('columnaG', 'encabezadoTarjeta', clase.toString());
+        llenarTarjetas('G', 'columnaG');
+        crearColumna('columnaO', 'encabezadoTarjeta', clase.toString());
+        llenarTarjetas('O', 'columnaO');
+
+        //falta cambiar variables de entrada (combinacion,idTarjeta)
+        llenarCombinaciones(combinaciones, "id001");
     }
-    else {
-        var styles = "@import url('~/css/site.css');";
-        var newSS = document.createElement('link');
-        newSS.rel = 'stylesheet';
-        newSS.href = 'data:text/css,' + escape(styles);
-        document.getElementsByTagName("head")[0].appendChild(newSS);
-    }
-
-
-
-    crearFila('encabezadoTarjeta', 'tarjeta');
-    const clase = "col-sm";
-
-    crearColumna('columnaB', 'encabezadoTarjeta',clase.toString());
-    llenarTarjetas('B','columnaB');
-    crearColumna('columnaI', 'encabezadoTarjeta',clase.toString());
-    llenarTarjetas('I', 'columnaI');
-    crearColumna('columnaN', 'encabezadoTarjeta',clase.toString());
-    llenarTarjetas('N', 'columnaN');
-    crearColumna('columnaG', 'encabezadoTarjeta',clase.toString());
-    llenarTarjetas('G', 'columnaG');
-    crearColumna('columnaO', 'encabezadoTarjeta',clase.toString());
-    llenarTarjetas('O', 'columnaO');
-
-    llenarCombinaciones("1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24", "id001");
 }
 
 

@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     Combinaciones combinaciones = new Combinaciones();
-    String tarjeta = combinaciones.GenerarCombinaciones();
+    String tarjeta = combinaciones.GenerarCombinacion();
 }
 
 <h1>Index</h1>
@@ -38,6 +38,6 @@
         }
     </tbody>
 </table>
-<a href="#" onclick="generarTarjeta()"> GENERAR TARJETA </a>
+<a href="#" onclick="generarTarjeta('@tarjeta.ToString()')"> GENERAR TARJETA </a>
 <div class="container" id="tarjeta"></div>
 
