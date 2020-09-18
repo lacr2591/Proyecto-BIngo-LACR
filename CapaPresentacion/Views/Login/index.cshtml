@@ -1,0 +1,49 @@
+﻿@model CapaPresentacion.Models.Juegos
+
+@{
+    ViewData["Title"] = "Bingo!";
+
+}
+
+@if (Model.Concluido == false)
+{
+    <div class="container h-100">
+        <div class="row justify-content-center h-100">
+            <div class="col-sm-8 align-self-center text-center">
+                <div class="card shadow">
+                    <div class="card-body" id="reanudarSesion">
+                        <h1 class="m-5">Bingo!</h1>
+                        <h1 class="m-5">
+                            <a asp-action="Ingresar" asp-route-id="@Model.IdJuego">Unirse a la partida @Model.Concluido</a>
+                            
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.onload = function () {
+            ReanudarSesion(@Model.IdJuego);
+        }
+
+    </script>
+
+}
+else
+{
+    <div class="container h-100">
+        <div class="row justify-content-center h-100">
+            <div class="col-sm-8 align-self-center text-center">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h1 class="m-5">
+                            <a asp-action="CrearSala" asp-route-id="@Model.IdJuego">Crear Nueva Partida @Model.Concluido</a>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

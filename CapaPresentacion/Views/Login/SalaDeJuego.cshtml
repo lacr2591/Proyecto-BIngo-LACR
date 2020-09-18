@@ -1,0 +1,48 @@
+﻿@model CapaPresentacion.Models.Juegos
+
+@{
+    ViewData["Title"] = "Sala de Juego";
+}
+
+<h1>Sala @Model.NombreSala</h1>
+
+<div class="container-fluid">
+    <div class="wrapper">
+        <div class="scroller">
+            @for (int i = 1; i <= 75; i++)
+            {
+                <button onclick="marcarBolillas(@i)" id="@i" class="btn btn-light" style="width:50px;height:50px;">@i</button>
+            }
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <br/>PANEL ADMINISTRADOR
+            <br/>
+            <hr/>
+            <label id="idSala" class="col-form-label">@Model.IdJuego</label>
+            <br/>
+            <label id="nombreSala" class="col-form-label">@Model.NombreSala</label>
+            <br/>
+            <label id="fechaCreacion" class="col-form-label">@Model.FechaCreacion</label>
+            <br/>
+            <label id="concluido" class="col-form-label">@Model.Concluido</label>
+
+        </div>
+        <div class="col-sm">
+            TARJETAS DE BINGO
+        </div>
+        <div class="col-sm">
+            USUARIOS CONECTADOS
+        </div>
+    </div>
+
+</div>
+<script>
+    window.onload = function () {
+        GuardarDatosHost();
+    }
+</script>
+

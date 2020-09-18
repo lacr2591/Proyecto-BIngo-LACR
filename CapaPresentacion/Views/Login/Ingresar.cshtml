@@ -1,9 +1,11 @@
-﻿@model IEnumerable<CapaPresentacion.Models.Combinaciones>
+﻿@model CapaPresentacion.Models.Juegos
 
 @{
-    ViewData["Title"] = "Seleccionar Tarjeta";
-
+    ViewData["Title"] = "Registrar";
 }
+
+<h1>Ingresar @Model.Concluido</h1>
+
 
 <h1>Ingresar datos para acceder al juego</h1>
 
@@ -13,9 +15,7 @@
     <input type="text" id="nickname" name="nickname" placeholder="NickName" value="" />
     <label>Nombre:</label>
     <input type="text" id="nombre" name="nombre" placeholder="Nombre" value="" />
-
     <a asp-action="Create">Create New</a>
-
 </form>
 <input type="button" onclick="generarTarjeta(GenerarCombinacion())" class="accept-policy" value="Generar Tarjeta" />
 
@@ -24,7 +24,8 @@
         generarTarjeta(GenerarCombinacion());
     }
 </script>
-<div id="temporal" name=""></div>
+<div id="temporal" class="none"></div>
 <div class="contenedorTarjeta" id="tarjeta"></div>
+
 
 

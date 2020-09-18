@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CapaPresentacion.Models;
 using Microsoft.EntityFrameworkCore;
+using CapaPresentacion.Hubs;
 
 namespace CapaPresentacion
 {
@@ -26,7 +27,7 @@ namespace CapaPresentacion
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            
+            services.AddSignalR();
             var conexion = Configuration.GetConnectionString("conexionDBBingo");
             services.AddDbContext<BingoContext>(options => options.UseSqlServer(conexion));
             
@@ -56,7 +57,8 @@ namespace CapaPresentacion
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
+                endpoints.MapHub<PositionHub>("/positionhub");
             });
         }
     }
