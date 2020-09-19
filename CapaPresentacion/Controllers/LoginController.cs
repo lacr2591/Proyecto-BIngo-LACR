@@ -29,7 +29,6 @@ namespace CapaPresentacion.Controllers
             {
                 return NotFound();
             }
-
             var juegoActual = await db.Juegos
             .FirstOrDefaultAsync(m => m.IdJuego == id);
 
@@ -37,14 +36,18 @@ namespace CapaPresentacion.Controllers
             {
                 return NotFound();
             }
-
             return View(juegoActual);
         }
-        public IActionResult CrearSala()
+        public IActionResult CrearSala(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            ViewBag.RecuperarIdJuego = id.ToString();
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CrearSalaDeJuego([Bind("IdJuego,NombreSala,FechaCreacion,Concluido")] Juegos juegos)
@@ -55,7 +58,7 @@ namespace CapaPresentacion.Controllers
             {
                 db.Add(juegos);
                 await db.SaveChangesAsync();
-                
+
                 return RedirectToAction(nameof(SalaDeJuego), juegos);
             }
             return RedirectToAction(nameof(Index));
@@ -67,12 +70,13 @@ namespace CapaPresentacion.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            else if (juego.NombreSala == "" || juego.IdJuego == 0)
+            else if (juego.NombreSala.Length == 0 || juego.IdJuego == 0)
             {
                 return RedirectToAction(nameof(Index));
             }
             else
             {
+                ViewBag.idJugador = TempData["idJugador"];
                 return View(juego);
             }
         }
@@ -93,6 +97,30 @@ namespace CapaPresentacion.Controllers
             }
 
             return RedirectToAction(nameof(SalaDeJuego), juegoActual);
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CrearUsuarioDeJuego(int? id, [Bind("IdJugador,Nickname,Nombre")] Jugadores jugadores)
+        {
+
+            if (ModelState.IsValid)
+            {
+                db.Add(jugadores);
+                await db.SaveChangesAsync();
+
+                var idJugador = jugadores.IdJugador;
+
+                var juegoActual = await db.Juegos
+                .FirstOrDefaultAsync(m => m.IdJuego == id);
+
+                TempData["idJugador"] = idJugador;
+
+                return RedirectToAction(nameof(SalaDeJuego), juegoActual);
+            }
+            return RedirectToAction(nameof(Index));
         }
 
     }

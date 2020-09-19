@@ -1,7 +1,4 @@
-﻿var connection = new signalR.HubConnectionBuilder()
-                            .withUrl("/positionhub").build();
-
-
+﻿
 function recargar() {
     let opcion = confirm("Clicka en Aceptar o Cancelar");
     if (opcion) {
@@ -81,14 +78,12 @@ function generarTarjeta(combinaciones) {
         llenarTarjetas('O', 'columnaO');
 
         //falta cambiar variables de entrada (combinacion,idTarjeta)
-        llenarCombinaciones(combinaciones, "id001");
+        llenarCombinaciones(combinaciones, " ");
+        if (document.getElementById("temporal")) {
+            document.getElementById("temporal").className = combinaciones;
+        }
 
-        document.getElementById("temporal").className = combinaciones;
 
-
-
-        console.log(document.getElementById('nickname').value);
-        GuardarDatosUsuario();
     }
 }
 
@@ -120,31 +115,37 @@ function marcar(elmnt) {
         document.getElementById(elmnt).className = 'col mb-1 ml-0 mt-0 pt-0 p-0 btn-warning font-weight-bold';
     }
 }
-function marcarBolillas(elmnt) {
-    if (document.getElementById(elmnt).className != 'btn btn-light') {
-        document.getElementById(elmnt).className = 'btn btn-light';
-    }
-    else {
-        document.getElementById(elmnt).className = 'btn btn-warning';
+
+function cargarBolillasTiradas(idSala) {
+
+    let host = JSON.parse(localStorage.getItem('host'));
+
+    if (host.idSala == idSala) {
+        if (localStorage.getItem("bolillas")) {
+            let bolillas = RecuperarTextoBolilla();
+            //CUANDO SE VUELVE
+            let temp = new Array();
+            bolillas = ' ' + bolillas;
+            temp = bolillas.split(' ');
+            console.log(temp[temp.length - 1]);
+
+            mostrarBolillaEnPanel(temp[temp.length - 1]);
+            console.log(temp);
+            /*
+             * FALTA IMPLEMENTAR EL MARCADO AUTOMATICO
+             * 
+            temp.forEach(n => marcarBolillas(n));
+            */
+
+        }
+        else {
+            console.log("funciona");
+        }
     }
 
-    //Envio de mensajes a los otros que no soy yo
-    connection.invoke("SendPosition",
-        elmnt).catch(function (err) {
-            return console.error(err.toString());
-        });
 }
 
-connection.on("ReceivePosition", function (elmnt) {
-    console.log(elmnt);
-    if (document.getElementById(elmnt).className != 'btn btn-light') {
-        document.getElementById(elmnt).className = 'btn btn-light';
-    }
-    else {
-        document.getElementById(elmnt).className = 'btn btn-warning';
-    }
-})
 
-connection.start().then(function () {
-    console.log("conectado");
-})
+
+
+

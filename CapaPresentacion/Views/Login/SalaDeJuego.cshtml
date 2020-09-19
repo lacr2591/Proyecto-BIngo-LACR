@@ -2,16 +2,21 @@
 
 @{
     ViewData["Title"] = "Sala de Juego";
+    int numId = 0;
+    int numtxt = 0;
 }
-
-<h1>Sala @Model.NombreSala</h1>
-
+<center>
+    <h1>Sala @Model.NombreSala</h1>
+</center>
 <div class="container-fluid">
     <div class="wrapper">
         <div class="scroller">
-            @for (int i = 1; i <= 75; i++)
+            @for (int i = 100; i <= 175; i++)
             {
-                <button onclick="marcarBolillas(@i)" id="@i" class="btn btn-light" style="width:50px;height:50px;">@i</button>
+                numId = i;
+                numtxt = i - 100;
+
+                <button id="@numId" class="btn btn-light" style="width:50px;height:50px;">@numtxt</button>
             }
         </div>
     </div>
@@ -19,30 +24,75 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <br/>PANEL ADMINISTRADOR
-            <br/>
-            <hr/>
-            <label id="idSala" class="col-form-label">@Model.IdJuego</label>
-            <br/>
-            <label id="nombreSala" class="col-form-label">@Model.NombreSala</label>
-            <br/>
-            <label id="fechaCreacion" class="col-form-label">@Model.FechaCreacion</label>
-            <br/>
-            <label id="concluido" class="col-form-label">@Model.Concluido</label>
+            <div id="panelNumerosAleatorios" class="container-fluid">
+                <div class="row">
+                    <div id="numeroAleatorio" class="salio col-sm bg-danger font-weight-bolder" style="font-size:3rem">
+                        Bingo!
+                    </div>
+                </div>
+            </div>
+            <b>SERVIDOR</b>
+            <br />
+            <hr />
+            <b>ID: </b><label id="idSala" class="col-form-label">@Model.IdJuego</label>
+            <br />
+            <b>NOMBRE: </b><label id="nombreSala" class="col-form-label">@Model.NombreSala</label>
+            <br />
+            <b>FECHA: </b><label id="fechaCreacion" class="col-form-label">@Model.FechaCreacion</label>
+            <br />
+            <b>CONCLUIDO: </b>
+            @if (@Model.Concluido)
+            {
+                <label id="concluido">SI</label>
+            }
+            else
+            {
+                <label id="concluido">NO</label>
+            }
 
         </div>
-        <div class="col-sm">
-            TARJETAS DE BINGO
+        <div id="tarjetaBingo" class="col-sm">
+            <b>TARJETAS DE BINGO</b>
+            <hr />
+            <div class="contenedorTarjeta" id="tarjeta"></div>
         </div>
-        <div class="col-sm">
-            USUARIOS CONECTADOS
+        <div id="PanelUsuarios" class="col-sm">
+            <b>USUARIOS CONECTADOS</b>
+            <p>
+                @if (ViewBag.idJugador != null)
+                {
+                    <div onclick="conectar()" id="conectarUsuario" class="btn btn-danger">
+                        Conectar
+                    </div>
+                }
+
+            </p>
+            <hr />
+
         </div>
     </div>
 
 </div>
 <script>
     window.onload = function () {
-        GuardarDatosHost();
+        //se puede cargar el id del localstorage pero para que no genere conflicto
+        crearBotonSacarBolilla(@Model.IdJuego);
     }
 </script>
 
+
+@section Scripts {
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js" asp-append-version="true"></script>
+    <script src="~/js/JuegoBingo.js" asp-append-version="true"></script>
+}
+
+@if (ViewBag.idJugador != null)
+{
+    <script>
+        window.onload = function () {
+            GuardarDatosUsuarioMasId(@ViewBag.idJugador);
+            CrearTarjetaBingo();
+            AgregarAlPanelUsuarios();
+    }
+    </script>
+}

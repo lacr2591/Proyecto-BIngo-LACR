@@ -1,10 +1,10 @@
 ﻿function GenerarCombinacion()
 {
-    let columnaB = GenerarColumna(1, 16);
-    let columnaI = GenerarColumna(16, 31);
-    let columnaN = GenerarColumna(31, 46);
-    let columnaG = GenerarColumna(46, 61);
-    let columnaO = GenerarColumna(61, 76);
+    let columnaB = GenerarColumna(1, 15);
+    let columnaI = GenerarColumna(16, 30);
+    let columnaN = GenerarColumna(31, 45);
+    let columnaG = GenerarColumna(46, 60);
+    let columnaO = GenerarColumna(61, 75);
 
     let combinacion = "";
 

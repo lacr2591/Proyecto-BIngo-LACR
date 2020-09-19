@@ -10,12 +10,13 @@
 <h1>Ingresar datos para acceder al juego</h1>
 
 
-<form action="/" method="post">
+<form asp-action="CrearUsuarioDeJuego" asp-route-id="@Model.IdJuego">
     <label>Nickname: </label>
-    <input type="text" id="nickname" name="nickname" placeholder="NickName" value="" />
+    <input type="text" id="Nickname" name="nickname" placeholder="NickName" value="" />
     <label>Nombre:</label>
-    <input type="text" id="nombre" name="nombre" placeholder="Nombre" value="" />
-    <a asp-action="Create">Create New</a>
+    <input type="text" id="Nombre" name="nombre" placeholder="Nombre" value="" />
+    <input onclick="GuardarDatosUsuario()" type="submit" value="Crear" class="btn btn-primary" />
+    
 </form>
 <input type="button" onclick="generarTarjeta(GenerarCombinacion())" class="accept-policy" value="Generar Tarjeta" />
 
